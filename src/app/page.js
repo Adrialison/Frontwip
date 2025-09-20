@@ -1,103 +1,79 @@
-import Image from "next/image";
+import React from 'react';
 
-export default function Home() {
+const WipStoreSection = () => {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Hola Adriana banana.
-          </li>
-        </ol>
+    <div className="max-w-6xl mx-auto px-4 py-8">
+      {/* Logos de marcas */}
+      <div className="flex justify-center items-center space-x-12 mb-12">
+        <img src="/public/images/logos/Ugreen-logo.webp" alt="UGREEN Logo" className="h-10" />
+        <img src="/public/images/logos/2023_LOGO-Baseus2_1200x1200.webp" alt="Baseus Logo" className="h-8" />
+        <img src="/public/images/logos/Intel_logo_(2006-2020).svg.png" alt="Intel Logo" className="h-12" />
+        <img src="/public/images/logos/Honor_(brand)-Logo.wine.png" alt="HONOR Logo" className="h-10" />
+        <img src="/public/images/logos/Ryzen_Logo.png" alt="Ryzen Logo" className="h-10" />
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Banner WIP Store */}
+      <div className="bg-gradient-to-r from-pink-500 to-pink-400 rounded-2xl mb-12 py-6">
+        <div className="text-center text-white">
+          <h2 className="text-2xl font-bold flex items-center justify-center gap-2">
+            WIP Store 🚀
+
+          </h2>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      {/* Categorías de productos */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Celulares */}
+        <div className="text-center">
+          <div className="bg-white rounded-full w-48 h-48 mx-auto mb-4 flex items-center justify-center shadow-lg">
+            <div className="relative">
+              <div className="w-24 h-32 bg-gradient-to-br from-purple-200 to-green-200 rounded-2xl border-2 border-gray-300 relative">
+                <div className="absolute top-2 left-2 w-3 h-3 bg-purple-600 rounded-full"></div>
+                <div className="absolute top-2 right-2 w-8 h-8 bg-black rounded-lg"></div>
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-16 h-8 bg-gradient-to-r from-purple-400 to-green-400 rounded-lg"></div>
+              </div>
+            </div>
+          </div>
+          <h3 className="text-lg font-semibold text-gray-700">Celulares</h3>
+        </div>
+
+        {/* Computadoras */}
+        <div className="text-center">
+          <div className="bg-white rounded-full w-48 h-48 mx-auto mb-4 flex items-center justify-center shadow-lg">
+            <div className="relative">
+              <div className="w-32 h-20 bg-gradient-to-br from-green-300 to-purple-400 rounded-lg border-2 border-gray-300">
+                <div className="w-full h-2 bg-gray-400 rounded-t-lg"></div>
+                <div className="mt-1 px-2">
+                  <div className="w-full h-2 bg-gradient-to-r from-green-400 to-purple-500 rounded"></div>
+                </div>
+              </div>
+              <div className="w-36 h-2 bg-gray-400 mx-auto mt-1 rounded-full"></div>
+            </div>
+          </div>
+          <h3 className="text-lg font-semibold text-gray-700">Computadoras</h3>
+        </div>
+
+        {/* Accesorios */}
+        <div className="text-center">
+          <div className="bg-white rounded-full w-48 h-48 mx-auto mb-4 flex items-center justify-center shadow-lg">
+            <div className="relative">
+              {/* Audífonos */}
+              <div className="w-20 h-20 relative">
+                <div className="absolute inset-0 bg-black rounded-full"></div>
+                <div className="absolute inset-2 bg-gray-800 rounded-full"></div>
+                <div className="absolute right-0 top-1/2 transform translate-x-4 -translate-y-1/2 w-3 h-8 bg-pink-500 rounded-full"></div>
+              </div>
+              {/* Base/soporte */}
+              <div className="w-16 h-3 bg-black mx-auto mt-2 rounded-full"></div>
+              <div className="w-12 h-6 bg-black mx-auto rounded-b-lg"></div>
+            </div>
+          </div>
+          <h3 className="text-lg font-semibold text-gray-700">Accesorios</h3>
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+export default WipStoreSection;
