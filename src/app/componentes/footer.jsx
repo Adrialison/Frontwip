@@ -1,210 +1,164 @@
 export default function Footer() {
   return (
     <>
-      <footer class="bg-white dark:bg-gray-900">
-        <div class="mx-auto w-full max-w-screen-xl">
-          <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
+      <footer className="bg-[#FE3776] ">
+        <div className="mx-auto w-full max-w-screen-xl ">
+          <div className="grid grid-cols-2 gap-8  px-4 py-6 lg:py-18 md:grid-cols-4 text-white">
             <div>
-              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                Company
+              <h2 className="mb-6 text-sm font-semibold text-white uppercase dark:text-white">
+                Sobre Nosotros
               </h2>
-              <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                <li class="mb-4">
-                  <a href="#" class=" hover:underline">
-                    About
+              <ul className="text-white dark:text-white font-medium">
+                <li className="mb-4">
+                  <a href="#" className=" hover:underline">
+                    Nosotros
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a href="#" class="hover:underline">
-                    Careers
+                <li className="mb-4">
+                  <a href="#" className="hover:underline">
+                    Nuestras tiendas
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a href="#" class="hover:underline">
-                    Brand Center
+                <li className="mb-4">
+                  <a href="#" className="hover:underline">
+                    Formas de pago
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a href="#" class="hover:underline">
-                    Blog
+                <li className="mb-4">
+                  <a href="#" className="hover:underline">
+                    Formas de envío
                   </a>
                 </li>
               </ul>
+              <img
+                src="images/metodospago/Frame_9.png"
+                className="h-20 w-80"
+                alt="Flowbite Logo"
+              />
             </div>
             <div>
-              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                Help center
+              <h2 className="mb-6 text-sm font-semibold text-white uppercase dark:text-white">
+                Atención al cliente
               </h2>
-              <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                <li class="mb-4">
-                  <a href="#" class="hover:underline">
-                    Discord Server
+              <ul className="text-white dark:text-white font-medium">
+                <li className="mb-4">
+                  <a href="#" className="hover:underline">
+                    Contáctenos
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a href="#" class="hover:underline">
-                    Twitter
+                <li className="mb-4">
+                  <a href="#" className="hover:underline">
+                    Preguntas frecuentes
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a href="#" class="hover:underline">
-                    Facebook
+                <li className="mb-4">
+                  <a href="#" className="hover:underline">
+                    Libro de Reclamaciones
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a href="#" class="hover:underline">
+                <li className="mb-4">
+                  <a href="#" className="hover:underline">
                     Contact Us
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                Legal
+              <h2 className="mb-6 text-sm font-semibold text-white uppercase dark:text-white">
+                Políticas de la empresa
               </h2>
-              <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                <li class="mb-4">
-                  <a href="#" class="hover:underline">
-                    Privacy Policy
+              <ul className="text-white dark:text-white font-medium">
+                <li className="mb-4">
+                  <a href="#" className="hover:underline">
+                    Política de garantía
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a href="#" class="hover:underline">
-                    Licensing
+                <li className="mb-4">
+                  <a href="#" className="hover:underline">
+                    Política de devolución o cambio
                   </a>
                 </li>
-                <li class="mb-4">
-                  <a href="#" class="hover:underline">
-                    Terms &amp; Conditions
+                <li className="mb-4">
+                  <a href="#" className="hover:underline">
+                    Política de privacidad
+                  </a>
+                </li>
+                <li className="mb-4">
+                  <a href="#" className="hover:underline">
+                    Terminos y condiciones Legales
                   </a>
                 </li>
               </ul>
+              <img
+                src="images/metodospago/image_2.png"
+                className="h-20 w-30"
+                alt="Flowbite Logo"
+              />
             </div>
             <div>
-              <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                Download
+              <h2 clclassNameass="mb-6 text-sm font-semibold text-white uppercase dark:text-white">
+                Horario de atención al Cliente y Ventas Whatsapp: 
               </h2>
-              <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                <li class="mb-4">
-                  <a href="#" class="hover:underline">
-                    iOS
-                  </a>
+              <ul className="text-white dark:text-white font-medium">
+                <li className="mb-4">
+                  <p href="#">
+                    Lun a Vie 9:00 am. a 6:00 pm. Sáb y Dom de 9:00 am. a 2:00
+                    pm.
+                  </p>
                 </li>
-                <li class="mb-4">
-                  <a href="#" class="hover:underline">
-                    Android
+
+                <li className="mb-4 flex space-x-4 bg-[#FE3776] p-2 rounded-full w-max">
+                  {/*   <!-- Facebook --> */}
+                  <a
+                    href="#"
+                    className="text-white hover:text-[#FFD6DC] transition-colors"
+                    aria-label="Facebook"
+                  >
+                    <svg
+                      className="w-6 h-6"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M22.675 0H1.325C.593 0 0 .593 0 1.326v21.348C0 23.406.593 24 1.325 24H12.82V14.708h-3.356v-3.622h3.356V8.413c0-3.325 2.032-5.135 5.003-5.135 1.422 0 2.642.106 2.994.154v3.474h-2.057c-1.615 0-1.926.767-1.926 1.89v2.48h3.85l-.502 3.622h-3.348V24h6.567c.73 0 1.324-.593 1.324-1.326V1.326C24 .593 23.406 0 22.675 0z" />
+                    </svg>
                   </a>
-                </li>
-                <li class="mb-4">
-                  <a href="#" class="hover:underline">
-                    Windows
+
+                  {/*   <!-- Instagram --> */}
+                  <a
+                    href="#"
+                    className="text-white hover:text-[#FFD6DC] transition-colors"
+                    aria-label="Instagram"
+                  >
+                    <svg
+                      className="w-6 h-6"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M12 2.163c3.204 0 3.584.012 4.849.07 1.366.062 2.633.342 3.608 1.316.975.975 1.254 2.242 1.316 3.608.058 1.265.069 1.645.069 4.849s-.012 3.584-.07 4.849c-.062 1.366-.342 2.633-1.316 3.608-.975.975-2.242 1.254-3.608 1.316-1.265.058-1.645.069-4.849.069s-3.584-.012-4.849-.07c-1.366-.062-2.633-.342-3.608-1.316-.975-.975-1.254-2.242-1.316-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.849c.062-1.366.342-2.633 1.316-3.608.975-.975 2.242-1.254 3.608-1.316C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.773.131 4.631.385 3.678 1.338 2.725 2.291 2.471 3.433 2.412 4.712.013 8.332 0 8.741 0 12s.013 3.668.072 4.948c.059 1.279.313 2.421 1.266 3.374.953.953 2.095 1.207 3.374 1.266C8.332 23.987 8.741 24 12 24s3.668-.013 4.948-.072c1.279-.059 2.421-.313 3.374-1.266.953-.953 1.207-2.095 1.266-3.374.059-1.28.072-1.689.072-4.948s-.013-3.668-.072-4.948c-.059-1.279-.313-2.421-1.266-3.374C19.368.385 18.226.131 16.948.072 15.668.013 15.259 0 12 0z" />
+                      <path d="M12 5.838a6.162 6.162 0 1 0 6.162 6.162A6.169 6.169 0 0 0 12 5.838zm0 10.162a4 4 0 1 1 4-4 4.005 4.005 0 0 1-4 4z" />
+                      <circle cx="18.406" cy="5.594" r="1.44" />
+                    </svg>
                   </a>
-                </li>
-                <li class="mb-4">
-                  <a href="#" class="hover:underline">
-                    MacOS
+
+                  {/*   <!-- WhatsApp --> */}
+                  <a
+                    href="#"
+                    className="text-white hover:text-[#FFD6DC] transition-colors"
+                    aria-label="WhatsApp"
+                  >
+                    <svg
+                      className="w-6 h-6"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M20.52 3.48A11.942 11.942 0 0 0 12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.094 1.602 5.813L0 24l6.394-1.588A11.934 11.934 0 0 0 12 24c6.627 0 12-5.373 12-12 0-3.21-1.253-6.254-3.48-8.52zM12 22a10 10 0 0 1-5.31-1.498l-.38-.227-3.8.944.995-3.695-.248-.38A10 10 0 1 1 12 22zm5.678-7.836c-.247-.124-1.46-.723-1.687-.806-.226-.082-.39-.124-.554.124-.164.247-.63.806-.773.973-.143.164-.286.185-.533.062-.247-.124-1.042-.384-1.985-1.22-.733-.654-1.228-1.462-1.374-1.709-.143-.247-.015-.381.108-.505.112-.111.247-.286.37-.429.124-.143.164-.247.247-.412.082-.165.041-.31-.02-.434-.062-.124-.554-1.33-.758-1.82-.199-.484-.403-.418-.554-.426-.143-.007-.31-.009-.477-.009s-.434.062-.662.31c-.226.247-.862.844-.862 2.062 0 1.218.882 2.396 1.005 2.563.124.165 1.737 2.645 4.21 3.706.588.254 1.045.406 1.402.518.588.187 1.123.161 1.546.098.471-.068 1.46-.595 1.666-1.17.206-.576.206-1.07.144-1.17-.062-.101-.226-.164-.474-.288z" />
+                    </svg>
                   </a>
                 </li>
               </ul>
-            </div>
-          </div>
-          <div class="px-4 py-6 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between">
-            <span class="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
-              © 2023 <a href="https://flowbite.com/">Flowbite™</a>. All Rights
-              Reserved.
-            </span>
-            <div class="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
-              <a
-                href="#"
-                class="text-gray-400 hover:text-gray-900 dark:hover:text-white"
-              >
-                <svg
-                  class="w-4 h-4"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 8 19"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <span class="sr-only">Facebook page</span>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-gray-900 dark:hover:text-white"
-              >
-                <svg
-                  class="w-4 h-4"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 21 16"
-                >
-                  <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z" />
-                </svg>
-                <span class="sr-only">Discord community</span>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-gray-900 dark:hover:text-white"
-              >
-                <svg
-                  class="w-4 h-4"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 17"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <span class="sr-only">Twitter page</span>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-gray-900 dark:hover:text-white"
-              >
-                <svg
-                  class="w-4 h-4"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <span class="sr-only">GitHub account</span>
-              </a>
-              <a
-                href="#"
-                class="text-gray-400 hover:text-gray-900 dark:hover:text-white"
-              >
-                <svg
-                  class="w-4 h-4"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 0a10 10 0 1 0 10 10A10.009 10.009 0 0 0 10 0Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.094 20.094 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0 0 4.769-3.366ZM8 1.707a8.821 8.821 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.758 45.758 0 0 0 8 1.707ZM1.642 8.262a8.57 8.57 0 0 1 4.73-5.981A53.998 53.998 0 0 1 9.54 7.222a32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01 7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.64 31.64 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM10 18.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0 0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 13.113 11a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <span class="sr-only">Dribbble account</span>
-              </a>
             </div>
           </div>
         </div>
