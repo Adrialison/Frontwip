@@ -4,13 +4,13 @@ const WipStoreSection = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       {/* Logos de marcas */}
-      <div className="flex justify-center items-center space-x-12 mb-12">
-        <img src="/public/images/logos/Ugreen-logo.webp" alt="UGREEN Logo" className="h-10" />
-        <img src="/public/images/logos/2023_LOGO-Baseus2_1200x1200.webp" alt="Baseus Logo" className="h-8" />
-        <img src="/public/images/logos/Intel_logo_(2006-2020).svg.png" alt="Intel Logo" className="h-12" />
-        <img src="/public/images/logos/Honor_(brand)-Logo.wine.png" alt="HONOR Logo" className="h-10" />
-        <img src="/public/images/logos/Ryzen_Logo.png" alt="Ryzen Logo" className="h-10" />
-      </div>
+        <div className="flex justify-center items-center space-x-12 mb-12">
+          <img src="/images/logos/Ugreen-logo.webp" alt="UGREEN Logo" className="h-10" />
+          <img src="/images/logos/2023_LOGO-Baseus2_1200x1200.webp" alt="Baseus Logo" className="h-8" />
+          <img src="/images/logos/Intel_logo_(2006-2020).svg.png" alt="Intel Logo" className="h-12" />
+          <img src="/images/logos/Honor_(brand)-Logo.wine.png" alt="HONOR Logo" className="h-10" />
+          <img src="/images/logos/Ryzen_Logo.png" alt="Ryzen Logo" className="h-10" />
+        </div>
 
       {/* Banner WIP Store */}
       <div className="bg-gradient-to-r from-pink-500 to-pink-400 rounded-2xl mb-12 py-6">
