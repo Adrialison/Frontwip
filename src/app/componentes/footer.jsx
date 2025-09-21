@@ -96,7 +96,7 @@ export default function Footer() {
               />
             </div>
             <div>
-              <h2 clclassNameass="mb-6 text-sm font-semibold text-white uppercase dark:text-white">
+              <h2 className="mb-6 text-sm font-semibold text-white uppercase dark:text-white">
                 Horario de atención al Cliente y Ventas Whatsapp: 
               </h2>
               <ul className="text-white dark:text-white font-medium">
@@ -162,7 +162,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-    </footer> 
-     </>
+      </footer>
+    </>
   );
 }
