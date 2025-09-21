@@ -26,35 +26,35 @@ const WipStoreSection = () => {
             <img
               src="/images/logos/Ugreen-logo.webp"
               alt="UGREEN Logo"
-              className="h-10 mx-auto"
+              className="h-20 mx-auto"
             />
           </div>
           <div className="flex justify-center">
             <img
               src="/images/logos/2023_LOGO-Baseus2_1200x1200.webp"
               alt="Baseus Logo"
-              className="h-8 mx-auto"
+              className="h-20 mx-auto"
             />
           </div>
           <div className="flex justify-center">
             <img
               src="/images/logos/Intel_logo_(2006-2020).svg.png"
               alt="Intel Logo"
-              className="h-12 mx-auto"
+              className="h-20 mx-auto"
             />
           </div>
           <div className="flex justify-center">
             <img
               src="/images/logos/Honor_(brand)-Logo.wine.png"
               alt="HONOR Logo"
-              className="h-10 mx-auto"
+              className="h-20 mx-auto"
             />
           </div>
           <div className="flex justify-center">
             <img
               src="/images/logos/Ryzen_Logo.png"
               alt="Ryzen Logo"
-              className="h-10 mx-auto"
+              className="h-20 mx-auto"
             />
           </div>
         </Slider>
@@ -114,7 +114,7 @@ const WipStoreSection = () => {
         </div>
       </div>
 
-       {/* Banner productos destacados */}
+      {/* Banner productos destacados */}
       <div className="bg-[#FE3776] mt-15 mb-12 py-6">
         <div className="text-center text-white">
           <h2 className="text-2xl font-bold flex items-center justify-center gap-2">
