@@ -113,6 +113,16 @@ const WipStoreSection = () => {
           <h3 className="text-lg font-semibold text-gray-700">Accesorios</h3>
         </div>
       </div>
+
+       {/* Banner productos destacados */}
+      <div className="bg-[#FE3776] mt-15 mb-12 py-6">
+        <div className="text-center text-white">
+          <h2 className="text-2xl font-bold flex items-center justify-center gap-2">
+            Productos Destacados 🚀
+          </h2>
+        </div>
+      </div>
+
     </div>
   );
 };
