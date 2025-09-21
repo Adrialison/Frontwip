@@ -62,10 +62,13 @@ const WipStoreSection = () => {
 
       {/* Banner WIP Store */}
       <div className="bg-[#FE3776] mb-12 py-6">
-        <div className="text-center text-white">
-          <h2 className="text-2xl font-bold flex items-center justify-center gap-2">
-            WIP Store 🚀
-          </h2>
+        <div className="flex items-center justify-center gap-4">
+          <h2 className="text-2xl font-bold text-white">WIP Store</h2>
+          <img
+            src="/images/logos/mingcute_rocket-line.png"
+            alt="rocket"
+            className="h-10"
+          />
         </div>
       </div>
 
@@ -114,15 +117,19 @@ const WipStoreSection = () => {
         </div>
       </div>
 
-       {/* Banner productos destacados */}
-      <div className="bg-[#FE3776] mt-15 mb-12 py-6">
-        <div className="text-center text-white">
-          <h2 className="text-2xl font-bold flex items-center justify-center gap-2">
-            Productos Destacados 🚀
+      {/* Banner productos destacados */}
+      <div className="bg-[#FE3776] mt-15 py-6">
+        <div className="flex items-center justify-center gap-4">
+          <h2 className="text-2xl font-bold text-white">
+            Productos Destacados
           </h2>
+          <img
+            src="/images/logos/mingcute_rocket-line.png"
+            alt="rocket"
+            className="h-10"
+          />
         </div>
       </div>
-
     </div>
   );
 };
