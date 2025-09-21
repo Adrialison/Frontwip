@@ -110,6 +110,11 @@ export default function Header() {
           </div>
         </div>
       </nav>
+      <img
+        src="/images/hero/Hero.img.png"
+        className="h-full w-full"
+        alt="Flowbite Logo"
+      />
     </>
   );
 }
