@@ -61,7 +61,7 @@ const WipStoreSection = () => {
       </div>
 
       {/* Banner WIP Store */}
-      <div className="bg-[#FE3776] rounded-md mb-12 py-6">
+      <div className="bg-[#FE3776] mb-12 py-6">
         <div className="text-center text-white">
           <h2 className="text-2xl font-bold flex items-center justify-center gap-2">
             WIP Store 🚀
