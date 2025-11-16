@@ -223,11 +223,11 @@ export default function CelularesPage() {
                       {/* Imagen del producto */}
                       <div className="relative h-64 bg-gray-100 overflow-hidden group">
                         <Link href={`/products/${product.idProduct}`}>
-                          {product.imagen ? (
+                          {product.images?.[0]?.imagen ? (
                             <img
-                              src={`http://localhost:8000/storage/${product.imagen}`}
+                              src={`http://localhost:8000${product.images?.[0]?.imagen}`}
                               alt={product.nombre}
-                              className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                              className="w-full h-full object-contain"
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center text-gray-400">
