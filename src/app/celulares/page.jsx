@@ -4,7 +4,10 @@ import { getProducts, getBrands } from "../services/productService";
 import { getVariants } from "../services/variantService";
 import Link from "next/link";
 
-export default function CelularesPage() {
+// CONFIGURACIÓN: Cambia solo esta línea para cada categoría
+const CATEGORY_NAME = "celulares"; // Puede ser: "celulares", "computadoras", "accesorios", etc.
+
+export default function CategoryPage() {
   const [products, setProducts] = useState([]);
   const [variants, setVariants] = useState([]);
   const [brands, setBrands] = useState([]);
@@ -12,7 +15,7 @@ export default function CelularesPage() {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [favorites, setFavorites] = useState([]);
-  const productsPerPage = 12;
+  const productsPerPage = 6; // 3x2 grid
 
   useEffect(() => {
     loadData();
@@ -27,18 +30,15 @@ export default function CelularesPage() {
         getVariants(),
       ]);
 
-      // Filtrar solo productos de categoría "Celulares"
-      const celulares = productsData.filter(
+      // Filtrar productos por categoría
+      const categoryProducts = productsData.filter(
         (product) =>
-          product.category?.nombre?.toLowerCase() === "celulares" ||
-          product.category?.nombre?.toLowerCase() === "celular"
+          product.category?.nombre?.toLowerCase() === CATEGORY_NAME.toLowerCase()
       );
 
-      setProducts(celulares);
+      setProducts(categoryProducts);
       setBrands(brandsData);
       setVariants(variantsData);
-      console.log("📦 Variants:", variantsData);
-      console.log("🛒 Products:", celulares);
     } catch (error) {
       console.error("Error al cargar datos:", error);
     } finally {
@@ -58,6 +58,7 @@ export default function CelularesPage() {
       .filter((v) => Number(v.idProduct) === Number(productId))
       .reduce((sum, v) => sum + Number(v.stock || 0), 0);
   };
+
   const handleBrandToggle = (brandId) => {
     setSelectedBrands((prev) =>
       prev.includes(brandId)
@@ -104,39 +105,35 @@ export default function CelularesPage() {
     return products.filter((p) => p.idBrand === brandId).length;
   };
 
+  const getCategoryTitle = () => {
+    return CATEGORY_NAME.charAt(0).toUpperCase() + CATEGORY_NAME.slice(1);
+  };
+
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-2xl text-gray-600">Cargando celulares...</div>
+      <div className="min-h-screen flex items-center justify-center bg-pink-50">
+        <div className="text-2xl text-pink-600 font-semibold">Cargando {CATEGORY_NAME}...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="container mx-auto px-4 py-6">
-          <h1 className="text-3xl font-bold text-gray-800">Celulares</h1>
-          <p className="text-gray-600 mt-2">
-            {filteredProducts.length} productos encontrados
-          </p>
-        </div>
-      </div>
-
+    <div className="min-h-screen bg-pink-50">
       <div className="container mx-auto px-4 py-8">
-        <div className="flex gap-8">
+        <div className="flex gap-6">
           {/* Sidebar de Filtros */}
           <aside className="w-64 flex-shrink-0">
-            <div className="bg-white rounded-lg shadow-md p-6 sticky top-4">
-              <h2 className="text-xl font-bold text-gray-800 mb-4">Filtros</h2>
+            <div className="bg-white rounded-xl shadow-sm border border-pink-100 p-5 sticky top-4">
+              <h2 className="text-lg font-bold text-pink-600 mb-4 pb-3 border-b border-pink-100">
+                Filtros
+              </h2>
 
               {/* Filtro por Marca */}
-              <div className="mb-6">
-                <h3 className="font-semibold text-gray-700 mb-3 flex items-center justify-between">
+              <div>
+                <h3 className="font-semibold text-gray-800 mb-3 flex items-center justify-between text-sm">
                   Marca
                   <svg
-                    className="w-5 h-5"
+                    className="w-4 h-4 text-pink-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -150,7 +147,7 @@ export default function CelularesPage() {
                   </svg>
                 </h3>
 
-                <div className="space-y-2 max-h-64 overflow-y-auto">
+                <div className="space-y-1 max-h-96 overflow-y-auto">
                   {brands.map((brand) => {
                     const count = getBrandProductCount(brand.idBrand);
                     if (count === 0) return null;
@@ -158,18 +155,20 @@ export default function CelularesPage() {
                     return (
                       <label
                         key={brand.idBrand}
-                        className="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded"
+                        className="flex items-center space-x-2 cursor-pointer hover:bg-pink-50 p-2 rounded-lg transition"
                       >
                         <input
                           type="checkbox"
                           checked={selectedBrands.includes(brand.idBrand)}
                           onChange={() => handleBrandToggle(brand.idBrand)}
-                          className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                          className="w-4 h-4 text-pink-600 rounded focus:ring-pink-500 border-gray-300"
                         />
                         <span className="text-sm text-gray-700 flex-1">
                           {brand.nombre}
                         </span>
-                        <span className="text-xs text-gray-500">({count})</span>
+                        <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">
+                          {count}
+                        </span>
                       </label>
                     );
                   })}
@@ -183,7 +182,7 @@ export default function CelularesPage() {
                     setSelectedBrands([]);
                     setCurrentPage(1);
                   }}
-                  className="w-full mt-4 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition text-sm font-medium"
+                  className="w-full mt-4 px-4 py-2.5 bg-pink-100 text-pink-700 rounded-lg hover:bg-pink-200 transition text-sm font-medium"
                 >
                   Limpiar Filtros
                 </button>
@@ -194,9 +193,9 @@ export default function CelularesPage() {
           {/* Grid de Productos */}
           <main className="flex-1">
             {currentProducts.length === 0 ? (
-              <div className="bg-white rounded-lg shadow-md p-12 text-center">
+              <div className="bg-white rounded-xl shadow-sm border border-pink-100 p-12 text-center">
                 <svg
-                  className="w-16 h-16 mx-auto text-gray-400 mb-4"
+                  className="w-16 h-16 mx-auto text-pink-300 mb-4"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -209,28 +208,28 @@ export default function CelularesPage() {
                   />
                 </svg>
                 <p className="text-xl text-gray-500">
-                  No se encontraron celulares con los filtros seleccionados
+                  No se encontraron productos con los filtros seleccionados
                 </p>
               </div>
             ) : (
               <>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                   {currentProducts.map((product) => (
                     <div
                       key={product.idProduct}
-                      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300"
+                      className="bg-white rounded-xl shadow-sm border border-pink-100 overflow-hidden hover:shadow-lg hover:border-pink-200 transition-all duration-300"
                     >
                       {/* Imagen del producto */}
-                      <div className="relative h-64 bg-gray-100 overflow-hidden group">
+                      <div className="relative h-56 bg-gradient-to-br from-pink-50 to-white overflow-hidden group">
                         <Link href={`/products/${product.idProduct}`}>
                           {product.images?.[0]?.imagen ? (
                             <img
                               src={`http://localhost:8000${product.images?.[0]?.imagen}`}
                               alt={product.nombre}
-                              className="w-full h-full object-contain"
+                              className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
                             />
                           ) : (
-                            <div className="w-full h-full flex items-center justify-center text-gray-400">
+                            <div className="w-full h-full flex items-center justify-center text-pink-200">
                               <svg
                                 className="w-20 h-20"
                                 fill="none"
@@ -249,24 +248,17 @@ export default function CelularesPage() {
                         </Link>
 
                         {/* Badge de marca */}
-                        <div className="absolute top-2 right-2">
-                          <span className="bg-white text-gray-700 text-xs px-2 py-1 rounded-full font-medium shadow-sm">
+                        <div className="absolute top-3 left-3">
+                          <span className="bg-white text-gray-700 text-xs px-3 py-1.5 rounded-full font-semibold shadow-md border border-pink-100">
                             {getBrandName(product.idBrand)}
-                          </span>
-                        </div>
-
-                        {/* Badge de descuento */}
-                        <div className="absolute top-2 left-2">
-                          <span className="bg-red-500 text-white text-xs px-2 py-1 rounded font-bold">
-                            -8%
                           </span>
                         </div>
 
                         {/* Badge de stock */}
                         {hasStock(product.idProduct) && (
-                          <div className="absolute bottom-2 left-2">
-                            <span className="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg">
-                              En Stock ({getTotalStock(product.idProduct)})
+                          <div className="absolute top-3 right-3">
+                            <span className="bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs px-3 py-1.5 rounded-full font-bold shadow-lg">
+                              Stock: {getTotalStock(product.idProduct)}
                             </span>
                           </div>
                         )}
@@ -275,42 +267,42 @@ export default function CelularesPage() {
                       {/* Información del producto */}
                       <div className="p-4">
                         <Link href={`/products/${product.idProduct}`}>
-                          <h3 className="text-sm font-semibold text-gray-800 mb-2 line-clamp-2 min-h-[40px] hover:text-blue-600 transition">
+                          <h3 className="text-sm font-semibold text-gray-800 mb-3 line-clamp-2 min-h-[40px] hover:text-pink-600 transition">
                             {product.nombre}
                           </h3>
                         </Link>
 
-                        <div className="flex items-center justify-between mb-4">
-                          <div>
-                            <div className="flex items-center gap-2 mb-1">
-                              <span className="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded font-bold">
-                                -8%
-                              </span>
-                              <span className="text-2xl font-bold text-gray-900">
-                                S/. {parseFloat(product.precio).toFixed(2)}
-                              </span>
-                            </div>
-                            <span className="text-sm text-gray-400 line-through">
-                              S/.{" "}
-                              {(parseFloat(product.precio) * 1.08).toFixed(2)}
+                        <div className="mb-4">
+                          <div className="flex items-baseline gap-2 mb-1">
+                            <span className="text-xs bg-pink-100 text-pink-600 px-2 py-1 rounded-md font-bold">
+                              -8%
+                            </span>
+                            <span className="text-2xl font-bold text-pink-600">
+                              S/. {parseFloat(product.precio).toFixed(2)}
                             </span>
                           </div>
+                          <span className="text-sm text-gray-400 line-through">
+                            S/. {(parseFloat(product.precio) * 1.08).toFixed(2)}
+                          </span>
+                          <p className="text-xs text-pink-600 font-medium mt-1">
+                            Precio con descuento
+                          </p>
                         </div>
 
                         {/* Botones de acción */}
                         <div className="flex gap-2">
                           <button
                             onClick={() => toggleFavorite(product.idProduct)}
-                            className={`flex-shrink-0 w-12 h-12 rounded-lg border-2 flex items-center justify-center transition ${
+                            className={`flex-shrink-0 w-11 h-11 rounded-lg border-2 flex items-center justify-center transition ${
                               favorites.includes(product.idProduct)
-                                ? "border-red-500 bg-red-50"
-                                : "border-gray-300 hover:border-red-500 hover:bg-red-50"
+                                ? "border-pink-500 bg-pink-50"
+                                : "border-gray-200 hover:border-pink-400 hover:bg-pink-50"
                             }`}
                           >
                             <svg
-                              className={`w-6 h-6 ${
+                              className={`w-5 h-5 ${
                                 favorites.includes(product.idProduct)
-                                  ? "fill-red-500 text-red-500"
+                                  ? "fill-pink-500 text-pink-500"
                                   : "fill-none text-gray-400"
                               }`}
                               stroke="currentColor"
@@ -328,10 +320,10 @@ export default function CelularesPage() {
                           <button
                             onClick={() => addToCart(product)}
                             disabled={!hasStock(product.idProduct)}
-                            className={`flex-1 h-12 rounded-lg flex items-center justify-center gap-2 font-medium transition ${
+                            className={`flex-1 h-11 rounded-lg flex items-center justify-center gap-2 font-semibold transition text-sm ${
                               hasStock(product.idProduct)
-                                ? "bg-blue-600 text-white hover:bg-blue-700"
-                                : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                ? "bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:from-pink-600 hover:to-rose-600 shadow-md hover:shadow-lg"
+                                : "bg-gray-200 text-gray-400 cursor-not-allowed"
                             }`}
                           >
                             <svg
@@ -365,13 +357,13 @@ export default function CelularesPage() {
                         setCurrentPage((prev) => Math.max(prev - 1, 1))
                       }
                       disabled={currentPage === 1}
-                      className={`px-4 py-2 rounded-lg font-medium ${
+                      className={`px-4 py-2 rounded-lg font-medium transition ${
                         currentPage === 1
-                          ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                          : "bg-white text-gray-700 hover:bg-gray-100 shadow-sm"
+                          ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                          : "bg-white text-gray-700 hover:bg-pink-50 hover:text-pink-600 border border-pink-100"
                       }`}
                     >
-                      Anterior
+                      ‹
                     </button>
 
                     <div className="flex gap-2">
@@ -379,10 +371,10 @@ export default function CelularesPage() {
                         <button
                           key={index + 1}
                           onClick={() => setCurrentPage(index + 1)}
-                          className={`px-4 py-2 rounded-lg font-medium ${
+                          className={`w-10 h-10 rounded-lg font-semibold transition ${
                             currentPage === index + 1
-                              ? "bg-blue-600 text-white"
-                              : "bg-white text-gray-700 hover:bg-gray-100 shadow-sm"
+                              ? "bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-md"
+                              : "bg-white text-gray-700 hover:bg-pink-50 hover:text-pink-600 border border-pink-100"
                           }`}
                         >
                           {index + 1}
@@ -395,13 +387,13 @@ export default function CelularesPage() {
                         setCurrentPage((prev) => Math.min(prev + 1, totalPages))
                       }
                       disabled={currentPage === totalPages}
-                      className={`px-4 py-2 rounded-lg font-medium ${
+                      className={`px-4 py-2 rounded-lg font-medium transition ${
                         currentPage === totalPages
-                          ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                          : "bg-white text-gray-700 hover:bg-gray-100 shadow-sm"
+                          ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                          : "bg-white text-gray-700 hover:bg-pink-50 hover:text-pink-600 border border-pink-100"
                       }`}
                     >
-                      Siguiente
+                      ›
                     </button>
                   </div>
                 )}
