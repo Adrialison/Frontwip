@@ -15,7 +15,37 @@ export default function CategoryPage() {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [favorites, setFavorites] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedColor, setSelectedColor] = useState("");
   const productsPerPage = 6; // 3x2 grid
+
+  // Colores típicos de celulares - TODOS VISIBLES
+  const defaultColors = [
+    "Negro",
+    "Blanco", 
+    "Azul",
+    "Rojo",
+    "Rosa",
+    "Morado",
+    "Verde",
+    "Plateado",
+    "Dorado"
+  ];
+
+  // Efecto para prevenir scroll cuando el modal está abierto
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup function
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [modalOpen]);
 
   useEffect(() => {
     loadData();
@@ -76,9 +106,30 @@ export default function CategoryPage() {
     );
   };
 
-  const addToCart = (product) => {
-    console.log("Agregado al carrito:", product);
-    alert(`${product.nombre} agregado al carrito`);
+  // NUEVA FUNCIÓN: Abrir modal
+  const openCartModal = (product) => {
+    setSelectedProduct(product);
+    setSelectedColor("");
+    setModalOpen(true);
+  };
+
+  // NUEVA FUNCIÓN: Cerrar modal
+  const closeCartModal = () => {
+    setModalOpen(false);
+    setSelectedProduct(null);
+    setSelectedColor("");
+  };
+
+  // NUEVA FUNCIÓN: Agregar al carrito desde el modal
+  const addToCartFromModal = () => {
+    if (!selectedProduct) return;
+    
+    console.log("Agregado al carrito:", selectedProduct);
+    console.log("Color seleccionado:", selectedColor);
+    alert(`${selectedProduct.nombre} agregado al carrito${selectedColor ? ` - Color: ${selectedColor}` : ''}`);
+    
+    // Aquí puedes agregar la lógica real para agregar al carrito
+    closeCartModal();
   };
 
   // Filtrar productos por marca
@@ -109,6 +160,22 @@ export default function CategoryPage() {
     return CATEGORY_NAME.charAt(0).toUpperCase() + CATEGORY_NAME.slice(1);
   };
 
+  // Función para obtener el color CSS según el nombre del color
+  const getColorStyle = (colorName) => {
+    const colorMap = {
+      'Negro': 'bg-gray-900',
+      'Blanco': 'bg-white border border-gray-300',
+      'Azul': 'bg-blue-500',
+      'Rojo': 'bg-red-500',
+      'Rosa': 'bg-pink-400',
+      'Morado': 'bg-purple-500',
+      'Verde': 'bg-green-500',
+      'Plateado': 'bg-gray-300',
+      'Dorado': 'bg-yellow-400'
+    };
+    return colorMap[colorName] || 'bg-gray-400';
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-pink-50">
@@ -119,6 +186,149 @@ export default function CategoryPage() {
 
   return (
     <div className="min-h-screen bg-pink-50">
+      {/* MODAL DEL CARRITO - MÁS GRANDE CON TODOS LOS COLORES VISIBLES */}
+      {modalOpen && selectedProduct && (
+        <div className="fixed inset-0 backdrop-blur-[2px] bg-white/80 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl max-w-3xl w-full mx-auto border-2 border-pink-100 shadow-2xl">
+            <div className="p-8">
+              {/* Encabezado del modal con botón cerrar */}
+              <div className="flex justify-end items-center mb-6">
+                <button 
+                  onClick={closeCartModal}
+                  className="text-gray-400 hover:text-gray-600 text-2xl font-light bg-pink-50 w-8 h-8 rounded-full flex items-center justify-center"
+                >
+                  ×
+                </button>
+              </div>
+
+              {/* Contenido principal del modal */}
+              <div className="flex gap-8">
+                {/* Imagen del producto - Lado izquierdo - MÁS GRANDE */}
+                <div className="flex-1">
+                  <div className="w-full h-80 bg-gradient-to-br from-pink-50 to-white rounded-xl flex items-center justify-center p-8">
+                    {selectedProduct.images?.[0]?.imagen ? (
+                      <img
+                        src={`http://localhost:8000${selectedProduct.images?.[0]?.imagen}`}
+                        alt={selectedProduct.nombre}
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <div className="text-pink-200">
+                        <svg className="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Información del producto - Lado derecho */}
+                <div className="flex-1">
+                  <div className="space-y-4">
+                    {/* Nombre del producto */}
+                    <h2 className="text-2xl font-bold text-gray-800 leading-tight">
+                      {selectedProduct.nombre}
+                    </h2>
+
+                    {/* SKU */}
+                    <p className="text-gray-500 text-base">
+                      SKU: {selectedProduct.idProduct}
+                    </p>
+
+                    {/* Rating */}
+                    <div className="flex items-center gap-2">
+                      <div className="flex text-yellow-400 text-lg">
+                        ★★★★☆
+                      </div>
+                      <span className="text-gray-600 text-base">
+                        (100+ Comentarios)
+                      </span>
+                    </div>
+
+                    {/* Precio */}
+                    <div className="space-y-1">
+                      <div className="flex items-baseline gap-3">
+                        <span className="text-2xl font-bold text-pink-600">
+                          S/. {parseFloat(selectedProduct.precio).toFixed(2)}
+                        </span>
+                        <span className="text-lg text-gray-400 line-through">
+                          S/. {(parseFloat(selectedProduct.precio) * 1.08).toFixed(2)}
+                        </span>
+                      </div>
+                      <p className="text-pink-600 font-medium text-sm">
+                        Precio con descuento
+                      </p>
+                    </div>
+
+                    {/* Selector de color - TODOS LOS COLORES VISIBLES */}
+                    <div className="space-y-3">
+                      <label className="block text-lg font-semibold text-gray-800">
+                        Color: <span className="text-gray-600 font-normal">{selectedColor || "Seleccionar"}</span>
+                      </label>
+                      <div className="grid grid-cols-5 gap-3">
+                        {defaultColors.map((color) => (
+                          <button
+                            key={color}
+                            onClick={() => setSelectedColor(color)}
+                            className={`w-8 h-8 rounded-full border-2 transition-all flex items-center justify-center ${
+                              selectedColor === color 
+                                ? 'border-pink-500 ring-2 ring-pink-200' 
+                                : 'border-gray-300 hover:border-pink-300'
+                            }`}
+                            title={color}
+                          >
+                            <div className={`w-6 h-6 rounded-full ${getColorStyle(color)}`}></div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Botones de acción - CON CORAZÓN */}
+                    <div className="flex gap-4 mt-6">
+                      {/* Botón de favorito */}
+                      <button
+                        onClick={() => toggleFavorite(selectedProduct.idProduct)}
+                        className={`flex-shrink-0 w-9 h-9 rounded-xl border-2 flex items-center justify-center transition ${
+                          favorites.includes(selectedProduct.idProduct)
+                            ? "border-pink-500 bg-pink-50"
+                            : "border-gray-200 hover:border-pink-400 hover:bg-pink-50"
+                        }`}
+                      >
+                        <svg
+                          className={`w-7 h-7 ${
+                            favorites.includes(selectedProduct.idProduct)
+                              ? "fill-pink-500 text-pink-500"
+                              : "fill-none text-gray-400"
+                          }`}
+                          stroke="currentColor"
+                          strokeWidth={2}
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                          />
+                        </svg>
+                      </button>
+
+                      {/* Botón de agregar */}
+                      <button
+                        onClick={addToCartFromModal}
+                        className="flex-1 bg-gradient-to-r from-pink-500 to-rose-500 text-white py-4 rounded-xl font-bold text-base hover:from-pink-600 hover:to-rose-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+                      >
+                        AÑADIR A LA BOLSA
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* El resto de tu código permanece igual */}
       <div className="container mx-auto px-4 py-8">
         <div className="flex gap-6">
           {/* Sidebar de Filtros */}
@@ -221,7 +431,7 @@ export default function CategoryPage() {
                     >
                       {/* Imagen del producto */}
                       <div className="relative h-56 bg-gradient-to-br from-pink-50 to-white overflow-hidden group">
-                        <Link href={`/products/${product.idProduct}`}>
+                        <Link href={`/productos/${product.idProduct}`}>
                           {product.images?.[0]?.imagen ? (
                             <img
                               src={`http://localhost:8000${product.images?.[0]?.imagen}`}
@@ -317,8 +527,9 @@ export default function CategoryPage() {
                             </svg>
                           </button>
 
+                          {/* BOTÓN MODIFICADO: Ahora abre el modal */}
                           <button
-                            onClick={() => addToCart(product)}
+                            onClick={() => openCartModal(product)}
                             disabled={!hasStock(product.idProduct)}
                             className={`flex-1 h-11 rounded-lg flex items-center justify-center gap-2 font-semibold transition text-sm ${
                               hasStock(product.idProduct)
