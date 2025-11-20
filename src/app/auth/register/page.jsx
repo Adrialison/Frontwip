@@ -116,7 +116,9 @@ export default function RegisterPage() {
                   d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              <p className="text-red-600 text-sm whitespace-pre-line">{error}</p>
+              <p className="text-red-600 text-sm whitespace-pre-line">
+                {error}
+              </p>
             </div>
           )}
 
@@ -147,7 +149,7 @@ export default function RegisterPage() {
                   name="nombre"
                   value={form.nombre}
                   onChange={handleChange}
-                  className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:ring-4 focus:ring-pink-100 transition outline-none disabled:bg-gray-50 disabled:text-gray-500"
+                  className="w-full pl-12 pr-4 py-3 border-2   text-gray-500  border-gray-200 rounded-xl focus:border-pink-400 focus:ring-4 focus:ring-pink-100 transition outline-none disabled:bg-gray-50 disabled:text-gray-500"
                   placeholder="Juan Pérez"
                   required
                   disabled={loading}
@@ -181,7 +183,7 @@ export default function RegisterPage() {
                   name="correo"
                   value={form.correo}
                   onChange={handleChange}
-                  className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:ring-4 focus:ring-pink-100 transition outline-none disabled:bg-gray-50 disabled:text-gray-500"
+                  className="w-full pl-12 pr-4 py-3 border-2  text-gray-500 border-gray-200 rounded-xl focus:border-pink-400 focus:ring-4 focus:ring-pink-100 transition outline-none disabled:bg-gray-50 disabled:text-gray-500"
                   placeholder="tu@email.com"
                   required
                   disabled={loading}
@@ -215,7 +217,7 @@ export default function RegisterPage() {
                   name="contraseña"
                   value={form.contraseña}
                   onChange={handleChange}
-                  className="w-full pl-12 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:ring-4 focus:ring-pink-100 transition outline-none disabled:bg-gray-50 disabled:text-gray-500"
+                  className="w-full pl-12 pr-12 py-3 border-2  text-gray-500 border-gray-200 rounded-xl focus:border-pink-400 focus:ring-4 focus:ring-pink-100 transition outline-none disabled:bg-gray-50 disabled:text-gray-500"
                   placeholder="••••••••"
                   required
                   minLength={6}
@@ -264,13 +266,15 @@ export default function RegisterPage() {
                   )}
                 </button>
               </div>
-              <p className="text-xs text-gray-500 mt-1 ml-1">Mínimo 6 caracteres</p>
+              <p className="text-xs text-gray-500 mt-1 ml-1">
+                Mínimo 6 caracteres
+              </p>
             </div>
 
-            {/* Dirección */}
+            {/* Dirección (selección de país) */}
             <div>
               <label className="block mb-2 text-sm font-semibold text-gray-700">
-                Dirección
+                País
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -294,20 +298,26 @@ export default function RegisterPage() {
                     />
                   </svg>
                 </div>
-                <input
-                  type="text"
+
+                <select
                   name="direccion"
                   value={form.direccion}
                   onChange={handleChange}
-                  className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:ring-4 focus:ring-pink-100 transition outline-none disabled:bg-gray-50 disabled:text-gray-500"
-                  placeholder="Av. Principal 123"
                   disabled={loading}
-                />
+                  className="w-full pl-12 pr-4 py-3 border-2  text-gray-500 border-gray-200 rounded-xl focus:border-pink-400 focus:ring-4 focus:ring-pink-100 transition outline-none disabled:bg-gray-50 disabled:text-gray-500"
+                >
+                  <option value="">Selecciona un país</option>
+                  <option value="Perú">Perú</option>
+                  <option value="Bolivia">Bolivia</option>
+                  <option value="Chile">Chile</option>
+                  <option value="Argentina">Argentina</option>
+                  <option value="Colombia">Colombia</option>
+                </select>
               </div>
             </div>
 
             {/* Teléfono */}
-            <div>
+            {/*  <div>
               <label className="block mb-2 text-sm font-semibold text-gray-700">
                 Teléfono
               </label>
@@ -332,12 +342,12 @@ export default function RegisterPage() {
                   name="telefono"
                   value={form.telefono}
                   onChange={handleChange}
-                  className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:ring-4 focus:ring-pink-100 transition outline-none disabled:bg-gray-50 disabled:text-gray-500"
+                  className="w-full pl-12 pr-4 py-3 border-2  text-gray-500 border-gray-200 rounded-xl focus:border-pink-400 focus:ring-4 focus:ring-pink-100 transition outline-none disabled:bg-gray-50 disabled:text-gray-500"
                   placeholder="+51 999 999 999"
                   disabled={loading}
                 />
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Submit Button */}

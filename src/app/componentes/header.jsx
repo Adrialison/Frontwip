@@ -66,7 +66,7 @@ export default function Header() {
           {/* Icons */}
           <div className="flex items-center space-x-4 md:space-x-6 rtl:space-x-reverse order-2 md:order-3">
             <Link
-              href="/perfil"
+              href="/auth/login"
               className="p-2 hover:bg-pink-50 rounded-full transition"
             >
               <UserIcon className="h-6 w-6 text-pink-600 cursor-pointer" />
