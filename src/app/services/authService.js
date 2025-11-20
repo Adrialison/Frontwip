@@ -53,14 +53,27 @@ export const register = async (userData) => {
 
 export const logout = async () => {
   try {
-    await api.post("/api/logout");
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.warn("No hay token para cerrar sesión.");
+      return;
+    }
+
+    await api.post(
+      "/api/logout",
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
     localStorage.removeItem("token");
     localStorage.removeItem("user");
   } catch (error) {
-    console.error("Logout error:", error);
-    // Limpiar de todos modos
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    console.error("Error al cerrar sesión:", error);
   }
 };
 
