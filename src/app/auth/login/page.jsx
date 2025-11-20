@@ -20,8 +20,7 @@ export default function LoginPage() {
       const response = await login(correo, contraseña);
 
       // Obtener el rol del usuario de la respuesta
-      const userRole = response.data?.user?.rol;
-
+      const userRole = response.usuario?.rol;
       // Redirigir según el rol
       if (userRole === "admin") {
         router.push("/dashboard");
