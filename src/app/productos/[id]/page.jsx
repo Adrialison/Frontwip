@@ -15,6 +15,9 @@ export default function ProductPage() {
   const [loading, setLoading] = useState(true);
   const [selectedColor, setSelectedColor] = useState("");
   const [favorites, setFavorites] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  const [showReviewForm, setShowReviewForm] = useState(false);
+  const [newReview, setNewReview] = useState({ name: '', email: '', comment: '' });
 
   // Colores por defecto
   const defaultColors = [
@@ -279,6 +282,109 @@ export default function ProductPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Sección de Reseñas */}
+        <div className="mt-16 border-t border-gray-200 pt-12">
+          <h2 className="text-2xl font-bold text-gray-800 mb-8">Reseñas del Producto</h2>
+          
+          {/* Botón para abrir formulario */}
+          <button
+            onClick={() => setShowReviewForm(!showReviewForm)}
+            className="bg-pink-500 text-white px-6 py-3 rounded-lg hover:bg-pink-600 transition mb-8"
+          >
+            {showReviewForm ? 'Cancelar' : 'Escribir una Reseña'}
+          </button>
+
+          {/* Formulario de reseña */}
+          {showReviewForm && (
+            <div className="bg-white border border-pink-100 rounded-xl p-6 mb-8">
+              <h3 className="text-lg font-semibold mb-4">Deja tu reseña</h3>
+              <div className="space-y-4">
+                <input
+                  type="text"
+                  placeholder="Tu nombre"
+                  value={newReview.name}
+                  onChange={(e) => setNewReview({...newReview, name: e.target.value})}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                />
+                <input
+                  type="email"
+                  placeholder="Tu email"
+                  value={newReview.email}
+                  onChange={(e) => setNewReview({...newReview, email: e.target.value})}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                />
+                <textarea 
+                  placeholder="Tu reseña..."
+                  value={newReview.comment}
+                  onChange={(e) => setNewReview({...newReview, comment: e.target.value})}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  rows="4"
+                />
+                <button 
+                  onClick={() => {
+                    if (newReview.name && newReview.comment) {
+                      setReviews([...reviews, {
+                        id: Date.now(),
+                        user_name: newReview.name,
+                        user_email: newReview.email,
+                        comment: newReview.comment,
+                        created_at: new Date().toISOString(),
+                        rating: 5
+                      }]);
+                      setNewReview({ name: '', email: '', comment: '' });
+                      setShowReviewForm(false);
+                      alert('¡Reseña agregada!');
+                    } else {
+                      alert('Por favor completa al menos tu nombre y reseña');
+                    }
+                  }}
+                  className="bg-pink-500 text-white px-6 py-3 rounded-lg hover:bg-pink-600 transition font-semibold"
+                >
+                  Enviar Reseña
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Lista de reseñas */}
+          <div className="space-y-6">
+            {reviews.length === 0 ? (
+              <div className="text-center py-8">
+                <p className="text-gray-500 text-lg">Aún no hay reseñas para este producto.</p>
+                <p className="text-gray-400 mt-2">Sé el primero en compartir tu experiencia.</p>
+              </div>
+            ) : (
+              reviews.map((review) => (
+                <div key={review.id} className="border-b border-gray-200 pb-6 last:border-b-0">
+                  <div className="flex items-start gap-4 mb-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-pink-100 to-rose-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-pink-600 font-semibold text-lg">
+                        {review.user_name.charAt(0).toUpperCase()}
+                      </span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <p className="font-semibold text-gray-800">{review.user_name}</p>
+                        <div className="flex text-yellow-400 text-sm">
+                          {'★'.repeat(review.rating)}
+                        </div>
+                      </div>
+                      <p className="text-gray-500 text-sm">
+                        {new Date(review.created_at).toLocaleDateString('es-ES', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed">{review.comment}</p>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>
